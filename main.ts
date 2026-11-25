@@ -1,12 +1,13 @@
-import * as fs from "node:fs";
-import * as path from "node:path";
+import { writeFileSync, mkdirSync } from "node:fs";
+import { join } from "node:path";
 
-const monologue = `You came. Of course you came. They always come for Malachar, eventually, up the thousand steps, past the ravens that stopped bothering to warn me. Sit. No — stand, if you like. I've had the throne re-stuffed three times and it still eats my back.
+const OUTPUT_DIR = process.env.OUTPUT_DIR ?? "/output";
 
-The plan was simple: one eclipse, one crown, one kingdom kneeling before breakfast. That was forty years ago. Breakfast is cold. The eclipse is late. The kingdom sends strongly worded letters now.
+const monologue = `Sit in the right chair, the other one bites. Sword up. Chin up. Now say the prophecy louder. A prophecy only counts if the whole hall hears it, and the hall is full tonight.
 
-So. Draw your sword. Make it quick. I've a siege to yawn through at dawn, and the dungeon's last torch needs — oh. It went out.`;
+Thirty years on this throne. Six heroes before you, all of them mumbling. The trapdoor under your feet, the choir in the walls, I built them all, and none of it works when you rush. I staged every part of this night.
 
-const outDir = process.env.OUTPUT_DIR ?? "/output";
-fs.mkdirSync(outDir, { recursive: true });
-fs.writeFileSync(path.join(outDir, "entry.txt"), monologue + "\n", "utf8");
+Breathe. Once more, from the top. And when the floor gives way, try to look surprised. The crowd loves a good fall, and so do I.`;
+
+mkdirSync(OUTPUT_DIR, { recursive: true });
+writeFileSync(join(OUTPUT_DIR, "entry.txt"), monologue + "\n");
